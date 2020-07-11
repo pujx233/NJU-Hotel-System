@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hotel.data.vip.VIPMapper">
+
+    <insert id="createNewVIP" parameterType="com.example.hotel.po.VIP" useGeneratedKeys="true" keyProperty="id">
+        insert into VIP(userid,birthday,points,vipLevel)
+        values(#{userId},#{birthday},#{points},#{level})
+    </insert>
+
+    <select id = "getVIPByUserId" resultMap="VIP">
+        select * from VIP where userid=#{userId}
+    </select>
+    <update id = "setVIPLevel">
+        update VIP set vipLevel = #{level} where id = #{vipId};
+    </update>
+
+<!--    <delete id = "deleteById">-->
+<!--        delete from VIP where id = #{id}-->
+<!--    </delete>-->
+
+    <resultMap id="VIP" type="com.example.hotel.po.VIP">
+        <id column="id" property="id"/>
+        <result column="userId" property="userId"/>
+        <result column="birthday" property="birthday"/>
+        <result column="points" property="points"/>
+        <result column="vipLevel" property="level"/>
+    </resultMap>
+</mapper>

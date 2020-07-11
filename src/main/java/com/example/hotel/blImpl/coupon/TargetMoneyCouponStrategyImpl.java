@@ -1,0 +1,36 @@
+package com.example.hotel.blImpl.coupon;
+
+import com.example.hotel.bl.coupon.CouponMatchStrategy;
+import com.example.hotel.po.Coupon;
+import com.example.hotel.vo.CouponVO;
+/*作业改动 by檀潮*/ //修改HotelTargetMoneyCouponVO为TargetMoneyCouponVO
+import com.example.hotel.vo.TargetMoneyCouponVO;
+/*作业改动*/
+import com.example.hotel.vo.OrderVO;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TargetMoneyCouponStrategyImpl implements CouponMatchStrategy {
+
+
+    /**
+     * 判断某个订单是否满足某种满减金额优惠策略
+     * @param orderVO
+     * @param coupon
+     * @return
+     */
+    @Override
+    public boolean isMatch(OrderVO orderVO, Coupon coupon) {
+        /*作业改动 by檀潮*/
+        try{//couponType暂定3
+            if (coupon.getCouponType() == 3 && orderVO.getPrice() >= coupon.getTargetMoney()) {
+                return true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        /*作业改动 by檀潮*/
+        return false;
+    }
+    //依赖data.coupon.CouponMapper.insertCoupon(Coupon coupon)
+}

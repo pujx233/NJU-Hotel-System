@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hotel.data.marketer.MarketerMapper">
+
+    <select id="getAllAbnormalOrders" resultMap="Order">
+        select * from OrderList where orderState = '异常'
+    </select>
+
+    <resultMap id="Order" type="com.example.hotel.po.Order">
+        <id column="id" property="id"/>
+        <result column="userId" property="userId"/>
+        <result column="hotelId" property="hotelId"/>
+        <result column="hotelName" property="hotelName"/>
+        <result column="checkInDate" property="checkInDate"/>
+        <result column="checkOutDate" property="checkOutDate"/>
+        <result column="roomType" property="roomType"/>
+        <result column="roomNum" property="roomNum"/>
+        <result column="peopleNum" property="peopleNum"/>
+        <result column="haveChild" property="haveChild"/>
+        <result column="createDate" property="createDate"/>
+        <result column="price" property="price"/>
+        <result column="clientName" property="clientName"/>
+        <result column="phoneNumber" property="phoneNumber"/>
+        <result column="orderState" property="orderState"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.hotel.data.hotel.HotelMapper">
+    <!--作业改动 by檀潮-->  <!--添加hotelService属性-->
+    <insert id="insertHotel" parameterType="com.example.hotel.po.Hotel"
+    useGeneratedKeys="true" keyProperty="id">
+        insert into Hotel(address,bizRegion,hotelService,hotelDescription,hotelStar,hotelName,phoneNum,rate,manager_id)
+        values (#{address},#{bizRegion},#{hotelService},#{description},#{hotelStar},#{hotelName},#{phoneNum},#{rate},#{managerId})
+    </insert>
+    <!--作业改动-->
+
+    <select id="selectAllHotel" resultMap="Hotel">
+        select * from Hotel
+    </select>
+
+
+
+    <select id="selectById" resultMap="Hotel">
+        select * from Hotel where id=#{id}
+    </select>
+
+    <delete id = "deleteHotel">
+        delete from Hotel where id = #{hotelId}
+    </delete>
+
+    <update id = "updateHotelManager">
+        update Hotel set manager_id=#{managerId} where id=#{hotelId}
+    </update>
+
+    <update id="updateHotelDetail">
+        update Hotel set address=#{address},bizRegion=#{bizRegion},hotelService=#{hotelService},
+        hotelStar =#{hotelStar}, hotelDescription=#{description},phoneNum=#{phoneNum} where id =#{hotelId}
+    </update>
+
+    <resultMap id="Hotel" type="com.example.hotel.vo.HotelVO">
+        <id column="id" property="id"/>
+        <result column="address" property="address"/>
+        <result column="bizRegion" property="bizRegion"/>
+        <!--作业改动 by檀潮-->  <!--添加hotelService属性-->
+        <result column="hotelService" property="hotelService"/>
+        <!--作业改动-->
+        <result column="hotelDescription" property="description"/>
+        <result column="hotelStar" property="hotelStar"/>
+        <result column="hotelName" property="name"/>
+        <result column="phoneNum" property="phoneNum"/>
+        <result column="rate" property="rate"/>
+        <result column="manager_id" property="managerId"/>
+
+    </resultMap>
+
+
+</mapper>
